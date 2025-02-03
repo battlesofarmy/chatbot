@@ -1,7 +1,9 @@
 "use client";
-
-import { useState } from "react";
+import { FaArrowCircleUp } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import logo from '@/public/zestmate.png'
+import Image from "next/image";
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([]);
@@ -34,28 +36,61 @@ export default function Chatbot() {
 
   };
 
-  return (
-    <section className="">
-        <div className="flex flex-col h-screen bg-gray-900 text-white md:py-20 md:px-32 px-4">
-          {/* Chat Messages */}
-          <div className="flex-grow overflow-y-auto space-y-4 p-4 border border-gray-700 rounded-lg">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`p-3 rounded-lg max-w-lg ${
-                  msg.role === "user" ? "bg-blue-500 ml-auto" : "bg-gray-700"
-                }`}
-              >
-                {msg.text}
-              </div>
-            ))}
-          </div>
+    // Scroll to the bottom whenever messages change
+    const chatEndRef = useRef(null);
+    useEffect(() => {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
 
-          {/* Input Field */}
-          <div className="flex items-center mt-4">
+  return (
+    <section className="bg-gray-900 h-[100vh]">
+      
+     <div className="container">
+
+      <div className="flex justify-between items-center pt-3">
+        <div className=" text-gray-300 text-3xl font-medium"><i>ZestMate</i> </div>
+        <Image width={80} height={80} src={logo} alt="Logo"/>
+      </div>
+
+
+        <div className="flex flex-col md:h-[80vh] h-[70vh]  text-white mt-3">
+          {/* Chat Messages */}
+          <div className="flex-grow overflow-y-auto space-y-4 p-4 border border-gray-700 rounded-lg  bg-[#1E293B]">
+            {
+            messages.length>0 ? (
+              messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`p-3 rounded-lg max-w-lg ${
+                    msg.role === "user" ? "bg-blue-600 ml-auto" : "bg-gray-700"
+                  }`}
+                >
+                  {msg.text}
+                  <div ref={chatEndRef} /> {/* Keeps scrolling to bottom */}
+                </div>
+              ))
+              
+            ) : (
+              <div className="pt-24 text-center">
+                <div>
+                  <div className="flex justify-center mb-3">
+                    <Image width={60} height={60} src={logo} alt="Logo"/>
+                  </div>
+                  <kbd className="text-4xl">ZestMate</kbd>
+                  <p className="mt-1 text-sm">AI assistant manager of Z. H. Sikder University of Science & Technology</p>
+                  <p className="mt-1 text-sm">Depertment of Computer Science & Engineering</p>
+                </div>
+              </div>
+            )
+            }
+          </div>
+          
+          {/* Send button option  */}
+          <div className="flex items-center mt-3 relative">
             <input
+              rows={3}
               type="text"
-              className="flex-grow p-2 rounded-lg bg-gray-800 text-white border border-gray-600"
+              className="flex-grow p-2 h-16 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none"
               placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -63,12 +98,15 @@ export default function Chatbot() {
             />
             <button
               onClick={sendMessage}
-              className="ml-2 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700"
+              className="absolute right-2 ml-2 px-4 py-2 text-3xl"
             >
-              Send
+              <FaArrowCircleUp/>
             </button>
           </div>
-      </div>
+          <p className="-mb-8 mt-4 text-xs">Created By 💖<kbd>Muntasir Ahmed</kbd> </p>
+        </div>
+
+     </div>
     </section>
   );
 }
