@@ -90,7 +90,7 @@ export default function Chatbot() {
             <input
               rows={3}
               type="text"
-              className="flex-grow p-2 h-16 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none"
+              className="flex-grow p-2 h-16 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none pl-4"
               placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
