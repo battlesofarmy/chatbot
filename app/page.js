@@ -1,6 +1,8 @@
 "use client";
 import { FaArrowCircleUp } from "react-icons/fa";
+import { MdSupportAgent } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
+import { FcOnlineSupport } from "react-icons/fc";
 import axios from "axios";
 import logo from '@/public/zestmate.png'
 import Image from "next/image";
@@ -48,7 +50,10 @@ export default function Chatbot() {
      <div className="container">
 
       <div className="flex justify-between items-center pt-3">
-        <div className=" text-gray-300 text-3xl font-medium"><i>ZestMate</i> </div>
+        <div className="flex items-center text-gray-300 text-3xl font-medium">
+          <FcOnlineSupport className="text-5xl mr-2 text-[#F1A048]"/>
+          <i>ZestMate</i>
+        </div>
         <Image width={80} height={80} src={logo} alt="Logo"/>
       </div>
 
@@ -90,8 +95,8 @@ export default function Chatbot() {
             <input
               rows={3}
               type="text"
-              className="flex-grow p-2 h-16 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none pl-4"
-              placeholder="Type your message..."
+              className="flex-grow p-2 h-16 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none pl-5"
+              placeholder="Ask your any question..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && sendMessage()}
