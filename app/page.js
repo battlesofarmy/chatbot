@@ -1,6 +1,5 @@
 "use client";
 import { FaArrowCircleUp } from "react-icons/fa";
-import { MdSupportAgent } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
 import { FcOnlineSupport } from "react-icons/fc";
 import axios from "axios";
