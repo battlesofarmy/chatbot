@@ -81,7 +81,7 @@ export default function Chatbot() {
                     <Image width={60} height={60} src={logo} alt="Logo"/>
                   </div>
                   <kbd className="text-4xl">ZestMate</kbd>
-                  <p className="mt-1 text-sm">AI assistant manager of Z. H. Sikder University of Science & Technology</p>
+                  <p className="mt-1 text-sm">AI manager of Z. H. Sikder University of Science & Technology</p>
                   <p className="mt-1 text-sm">Depertment of Computer Science & Engineering</p>
                 </div>
               </div>
